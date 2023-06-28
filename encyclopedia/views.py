@@ -38,4 +38,14 @@ def search(request):
                 "title": entry_search, 
                 "content": html_content
             })
+        else: 
+            allEntries = util.list_entries()
+            recommendation = []
+            for entry in allEntries:
+                if entry_search.lower() in entry.lower():
+                    recommendation.append(entry)
+            return render(request, "encyclopedia/search.html", {
+                "recommendation": recommendation
+            })
+
 
